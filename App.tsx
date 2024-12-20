@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -13,7 +6,9 @@ import {StyleSheet, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './Pages/Home';
 import SearchScreen from './Pages/Scearch';
-import {MdMovie, MdSearch} from 'react-icons/md';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+
 
 const Tab = createBottomTabNavigator();
 function App(): React.JSX.Element {
@@ -27,19 +22,34 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({route}) => ({
-          tabBarICon: ({color, size}) => {
-            let iconName;
-            if (route.name === 'Movies') {
-              return <MdMovie color={color} size={size} />;
-            } else if (route.name === 'Search') {
-              return <MdSearch color={color} size={size} />;
-            }
-          },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
+        
         })}>
-        <Tab.Screen name="Movies" component={HomeScreen} />
-        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen
+          name="Movies"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({color, size}) => {
+              return(<MaterialIcons name="movie" color={color} size={size} />
+              )
+
+            }
+              
+            ,
+          }}
+        />
+        <Tab.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({color, size}) => (
+              <MaterialIcons name="search" color={color} size={size} />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
