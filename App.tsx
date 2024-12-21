@@ -7,10 +7,42 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './Pages/Home';
 import SearchScreen from './Pages/Scearch';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-
+import {createStackNavigator} from '@react-navigation/stack';
+import Details from './Pages/Details';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+function TabNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}>
+      <Tab.Screen
+        name="Movies"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({color, size}) => {
+            return <MaterialIcons name="movie" color={color} size={size} />;
+          },
+          title: 'Home',
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color, size}) => (
+            <MaterialIcons name="search" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -20,37 +52,18 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
-        
-        })}>
-        <Tab.Screen
-          name="Movies"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({color, size}) => {
-              return(<MaterialIcons name="movie" color={color} size={size} />
-              )
-
-            }
-              
-            ,
-          }}
+      <Stack.Navigator initialRouteName="TabNavigator">
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
         />
-        <Tab.Screen
-          name="Search"
-          component={SearchScreen}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({color, size}) => (
-              <MaterialIcons name="search" color={color} size={size} />
-            ),
-          }}
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{title: 'Details'}}
         />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

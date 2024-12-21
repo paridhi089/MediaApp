@@ -2,14 +2,18 @@ import {Text, View, StyleSheet, FlatList} from 'react-native';
 import {useEffect, useState} from 'react';
 import MovieItem from '../component/MovieItem';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 
 const removeHtmlTags = (text?: string): string | null=> {
   if (text === null) return null;
   else return text.replace(/<[^>]*>/g, ''); 
 };
 
+
 const HomeScreen = () => {
   const [movies, setMovies] = useState<Show[]>([]);
+  const navigator=useNavigation();
   useEffect(() => {
     const fetchMovies = async () => {
       const response = await fetch(
@@ -31,7 +35,7 @@ const HomeScreen = () => {
       title={item.name}
       image={item.image?.medium}
       description={removeHtmlTags(item.summary)}
-      onPress={() => console.log('Selected movie:', item.summary)}
+      onPress={() => { navigator.navigate('Details',{movie:item})}}
     />
   );
 

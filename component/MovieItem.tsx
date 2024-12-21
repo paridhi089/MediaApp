@@ -45,7 +45,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 2,
-    width:"48%"
+    width:"48%",
+    minWidth:"48%",
+    maxWidth:"48%"
   },
   image: {
     width: '100%',
