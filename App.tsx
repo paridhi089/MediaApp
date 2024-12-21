@@ -16,6 +16,16 @@ function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
+        tabBarStyle: {
+          backgroundColor: '#000',
+        },
+        headerStyle: {
+          backgroundColor: '#000',
+        },
+        headerTitleStyle: {
+          color: '#fff',
+        },
+
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
       })}>
@@ -44,24 +54,23 @@ function TabNavigator() {
   );
 }
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="TabNavigator">
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
-          options={{headerShown: false}}
+          options={{headerShown: false, headerStyle: {backgroundColor: '#000'}}}
         />
         <Stack.Screen
           name="Details"
           component={Details}
-          options={{title: 'Details'}}
+          options={{
+            title: 'Details',
+            headerStyle: {backgroundColor: '#000'},
+            headerTitleStyle: {color: '#fff'},
+            headerTintColor: '#fff',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

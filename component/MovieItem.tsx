@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
     flex: 0.5,
     margin: 5,
     borderRadius: 8,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#0E1513',
     overflow: 'hidden',
-    shadowColor: '#000',
+    shadowColor: '#1b1b1b',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    elevation: 2,
+    elevation: 5,
     width:"48%",
     minWidth:"48%",
     maxWidth:"48%"
@@ -63,9 +63,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,
+    color:'#fff'
   },
   description: {
     fontSize: 14,
-    color: '#555',
+    color: '#fff',
+    
   },
 });

@@ -79,7 +79,7 @@ android {
 
     namespace "com.mediaapp"
     defaultConfig {
-        applicationId "com.mediaapp"
+        applicationId "com.paridhi.mediaapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

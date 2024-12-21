@@ -1,6 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {useRoute, RouteProp} from '@react-navigation/native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Pressable,
+} from 'react-native';
+import {useRoute} from '@react-navigation/native';
+import {Linking} from 'react-native';
 
 const removeHtmlTags = (text?: string): string | null => {
   if (text === null) return null;
@@ -28,6 +36,7 @@ const Details = () => {
   const genres = data.movie.genres;
   const premiered = data.movie?.premiered;
   const ended = data.movie?.ended;
+  const redirect = data.movie?.url;
 
   return (
     <ScrollView style={styles.container}>
@@ -65,6 +74,9 @@ const Details = () => {
           {removeHtmlTags(data.movie.summary)}
         </Text>
       </View>
+      <Pressable onPress={()=>{Linking.openURL(redirect)}} style={styles.button}>
+        <Text style={styles.buttonText}>View In Tv Maze</Text>
+      </Pressable>
     </ScrollView>
   );
 };
@@ -75,13 +87,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#090F0E',
+  },
+  button: {
+    backgroundColor: '#fff',
+    padding: 8,
+    marginVertical: 16,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#000',
+    textAlign: 'center',
+    fontWeight: '500',
   },
   overview: {
     padding: 16,
     flexDirection: 'row',
-    elevation: 2,
+    elevation: 5,
     borderRadius: 8,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#0E1513',
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
@@ -91,18 +115,22 @@ const styles = StyleSheet.create({
   overviewTextContainer: {
     flexDirection: 'column',
     margin: 16,
+    backgroundColor: '#0E1513',
   },
   textTitle: {
     fontSize: 22,
     fontWeight: '500',
+    color: '#fff',
   },
   textOther: {
     paddingTop: 4,
     fontSize: 15,
+    color: '#fff',
   },
   textSummary: {
     fontSize: 15,
     padding: 16,
+    color: '#fff',
   },
   image: {
     width: '45%',
@@ -112,9 +140,9 @@ const styles = StyleSheet.create({
   bottomContainer: {
     padding: 16,
     flexDirection: 'column',
-    elevation: 2,
+    elevation: 5,
     borderRadius: 8,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#0E1513',
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
